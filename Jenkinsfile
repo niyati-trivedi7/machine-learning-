@@ -1,23 +1,19 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.10'
-        }
-    }
+    agent any
 
     stages {
 
         stage('Install Dependencies') {
             steps {
                 echo "Installing dependencies"
-                sh 'pip install flask numpy scikit-learn'
+                sh 'python3 -m pip install flask numpy scikit-learn'
             }
         }
 
         stage('Run ML Application') {
             steps {
-                echo "Running ML app"
-                sh 'python ml_app.py &'
+                echo "Running ML application"
+                sh 'python3 ml_app.py &'
             }
         }
 
