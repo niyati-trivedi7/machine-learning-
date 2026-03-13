@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.10'
+        }
+    }
 
     stages {
 
@@ -20,6 +24,7 @@ pipeline {
         stage('Test API') {
             steps {
                 echo "Testing API"
+                sh 'sleep 5'
                 sh 'curl http://localhost:5002/ml/health'
             }
         }
